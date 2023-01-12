@@ -7,6 +7,13 @@ spring:
     username: root
     password: qwer1234
     driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: orderservice
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
 
 mybatis:
   type-aliases-package: com.roydon.order.entity
@@ -15,6 +22,15 @@ mybatis:
 
 logging:
   level:
-    cn.itcast: debug
+    com.roydon: debug
   pattern:
     dateformat: MM-dd HH:mm:ss:SSS
+
+userservice: # 给某个微服务配置负载均衡规则，这里是userservice服务
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # 负载均衡规则
+
+ribbon:
+  eager-load:
+    enabled: true # 开启饥饿加载
+    clients: userservice # 指定服务

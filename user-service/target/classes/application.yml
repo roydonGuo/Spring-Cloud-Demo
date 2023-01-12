@@ -1,17 +1,27 @@
 server:
   port: 8081
+
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/cloud-user?useSSL=false
     username: root
     password: qwer1234
     driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: userservice
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+
 mybatis:
   type-aliases-package: com.roydon.order.entity
   configuration:
     map-underscore-to-camel-case: true
+
 logging:
   level:
-    cn.itcast: debug
+    com.roydon: debug
   pattern:
     dateformat: MM-dd HH:mm:ss:SSS
