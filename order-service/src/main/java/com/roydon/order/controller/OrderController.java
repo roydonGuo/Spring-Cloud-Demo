@@ -13,13 +13,13 @@ import javax.annotation.Resource;
 @RequestMapping("order")
 public class OrderController {
 
-   @Resource
-   private OrderService orderService;
+    @Resource
+    private OrderService orderService;
 
     @GetMapping("{orderId}")
     public Order queryOrderByUserId(@PathVariable("orderId") Long orderId) {
         // 根据id查询订单并返回
         return orderService.queryOrderById(orderId);
     }
-    
+
 }
