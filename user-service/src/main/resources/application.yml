@@ -2,12 +2,12 @@ server:
   port: 8081
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/cloud_user?useSSL=false
+    url: jdbc:mysql://localhost:3306/cloud-user?useSSL=false
     username: root
-    password: 123
+    password: qwer1234
     driver-class-name: com.mysql.jdbc.Driver
 mybatis:
-  type-aliases-package: cn.itcast.user.pojo
+  type-aliases-package: com.roydon.order.entity
   configuration:
     map-underscore-to-camel-case: true
 logging:
