@@ -7,14 +7,13 @@ spring:
     username: root
     password: qwer1234
     driver-class-name: com.mysql.jdbc.Driver
-  application:
-    name: userservice
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:10086/eureka
-
+#  application:
+#    name: userservice
+#  cloud:
+#    nacos:
+#      server-addr: localhost:8848 # nacos服务地址
+#      discovery:
+#        cluster-name: HZ # 集群
 mybatis:
   type-aliases-package: com.roydon.order.entity
   configuration:

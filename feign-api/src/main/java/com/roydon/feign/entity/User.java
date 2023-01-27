@@ -1,4 +1,4 @@
-package com.roydon.order.entity;
+package com.roydon.feign.entity;
 
 import lombok.Data;
 

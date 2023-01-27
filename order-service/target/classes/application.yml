@@ -9,11 +9,18 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   application:
     name: orderservice
+  cloud:
+    nacos:
+      server-addr: localhost:80 # nacos集群
+#      server-addr: localhost:8848
+      discovery:
+        cluster-name: HZ
+#        namespace: 1e5db315-08c5-4ebd-a733-7c25bdaad8c3 # 命名空间，填ID
+        ephemeral: false # 非临时实例
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:10086/eureka
+userservice:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule # 负载均衡规则
 
 mybatis:
   type-aliases-package: com.roydon.order.entity
@@ -26,6 +33,22 @@ logging:
   pattern:
     dateformat: MM-dd HH:mm:ss:SSS
 
-userservice: # 给某个微服务配置负载均衡规则，这里是userservice服务
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # 负载均衡规则
+ribbon:
+  eager-load:
+    enabled: true # 开启饥饿加载
+    clients: userservice # 指定服务
+
+#feign:
+#  client:
+#    config:
+#      userservice: # 针对某个微服务的配置
+#        loggerLevel: FULL #  日志级别
+feign:
+  client:
+    config:
+      default: # default全局的配置
+        loggerLevel: BASIC # 日志级别，BASIC就是基本的请求和响应信息
+  httpclient:
+    enabled: true # 开启feign对HttpClient的支持
+    max-connections: 200 # 最大的连接数
+    max-connections-per-route: 50 # 每个路径的最大连接数
